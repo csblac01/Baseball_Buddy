@@ -1,6 +1,6 @@
 import pandas as pd
 import statsapi
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 WATCHLIST = Path("data/watchlist.csv")
@@ -25,7 +25,7 @@ STAT_KEYS = {
 }
 
 def get_season_candidates():
-    y = datetime.utcnow().year
+    y = datetime.now(timezone.utc).year
     return [y, y - 1]  # if current year has no stats yet, fall back
 
 def safe_player_season_stats(mlb_id: int):
